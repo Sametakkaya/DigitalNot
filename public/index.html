@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>💒 Düğün Anıları - Fotoğraf & Video Paylaşım</title>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+ <div class="container">
+  <!-- Header -->
+  <header class="header">
+   <div class="header-content">
+    <h1>Hoşgeldiiinn 💒</h1>
+    <p>Bu Özel Günümüzde Mutluluğumuza Ortak Olduğun İçin Teşekkür Ederiz.</p>
+    <p><i class="fas fa-heart"></i></p>
+   </div>
+  </header>
+
+  <!-- Upload Section -->
+  <section class="upload-section">
+   <div class="upload-card">
+    <div class="upload-icon">
+     <i class="fas fa-cloud-upload-alt"></i>
+    </div>
+    <h2>Fotoğraf veya Video Yükle</h2>
+    <p>Çektiğiniz Videoları Ve Fotoğrafları Bizimle'de Paylaşın</p>
+
+    <form id="uploadForm" class="upload-form">
+     <div class="file-input-wrapper">
+      <input type="file" id="mediaFile" name="media" accept="image/*,video/*" required>
+      <label for="mediaFile" class="file-input-label">
+       <i class="fas fa-camera"></i>
+       <span>Dosya Seç</span>
+      </label>
+     </div>
+
+     <div id="filePreview" class="file-preview" style="display: none;">
+      <div class="preview-content">
+       <img id="previewImage" style="display: none;" alt="Önizleme">
+       <video id="previewVideo" style="display: none;" controls></video>
+       <div class="file-info">
+        <span id="fileName"></span>
+        <span id="fileSize"></span>
+       </div>
+      </div>
+     </div>
+
+     <button type="submit" class="upload-btn" disabled>
+      <i class="fas fa-upload"></i>
+      Yükle
+     </button>
+    </form>
+
+    <div id="uploadStatus" class="upload-status" style="display: none;">
+     <div class="status-content">
+      <div class="spinner"></div>
+      <span>Yükleniyor...</span>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- QR Code Section -->
+  <section class="qr-section">
+   <div class="qr-card">
+    <h3><i class="fas fa-qrcode"></i> QR Kod</h3>
+    <p>Bu QR kodu okutarak sayfaya erişebilirsiniz</p>
+    <div id="qrCode" class="qr-code">
+     <div class="spinner"></div>
+    </div>
+    <button id="downloadQR" class="download-btn" style="display: none;">
+     <i class="fas fa-download"></i>
+     QR Kodu İndir
+    </button>
+   </div>
+  </section>
+
+  <!-- Admin Section (Hidden by default) -->
+  <section class="admin-section" id="adminSection" style="display: none;">
+   <div class="admin-card">
+    <h3><i class="fas fa-lock"></i> Yönetici Paneli</h3>
+    <div class="admin-controls">
+     <button id="showGallery" class="admin-btn">
+      <i class="fas fa-images"></i>
+      Galeriyi Göster
+     </button>
+     <button id="hideGallery" class="admin-btn" style="display: none;">
+      <i class="fas fa-eye-slash"></i>
+      Galeriyi Gizle
+     </button>
+    </div>
+
+    <div id="adminGallery" class="admin-gallery" style="display: none;">
+     <div class="gallery-header">
+      <h4><i class="fas fa-images"></i> Yüklenen Anılar</h4>
+      <button id="refreshGallery" class="refresh-btn">
+       <i class="fas fa-sync-alt"></i>
+       Yenile
+      </button>
+     </div>
+
+     <div id="gallery" class="gallery">
+      <div class="loading">
+       <div class="spinner"></div>
+       <span>Anılar yükleniyor...</span>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section>
+ </div>
+
+ <!-- Success Modal -->
+ <div id="successModal" class="modal" style="display: none;">
+  <div class="modal-content">
+   <div class="modal-header">
+    <i class="fas fa-check-circle success-icon"></i>
+    <h3>Başarılı!</h3>
+   </div>
+   <div class="modal-body">
+    <p>Dosyanız başarıyla yüklendi. Teşekkürler!</p>
+   </div>
+   <div class="modal-footer">
+    <button onclick="closeModal()" class="modal-btn">Tamam</button>
+   </div>
+  </div>
+ </div>
+
+ <!-- Admin Login Modal -->
+ <div id="adminLoginModal" class="modal" style="display: none;">
+  <div class="modal-content">
+   <div class="modal-header">
+    <i class="fas fa-user-shield"></i>
+    <h3>Yönetici Girişi</h3>
+   </div>
+   <div class="modal-body">
+    <form id="adminLoginForm">
+     <label for="adminUsername">Kullanıcı Adı</label>
+     <input type="text" id="adminUsername" required autocomplete="username">
+     <label for="adminPassword">Şifre</label>
+     <input type="password" id="adminPassword" required autocomplete="current-password">
+     <div id="adminLoginError" style="color: red; display: none; margin-top: 10px;"></div>
+     <button type="submit" class="modal-btn">Giriş Yap</button>
+    </form>
+   </div>
+  </div>
+ </div>
+
+ <script src="script.js"></script>
+</body>
+
+</html>
